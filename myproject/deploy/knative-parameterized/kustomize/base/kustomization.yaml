@@ -1,0 +1,11 @@
+resources:
+  - nodejs-service.yaml
+  - php-service.yaml
+  - python-service.yaml
+  - java-gradle-service.yaml
+  - java-war-service.yaml
+  - java-maven-service.yaml
+  - ruby-service.yaml
+  - rust-service.yaml
+  - django-service.yaml
+  - golang-service.yaml
