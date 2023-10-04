@@ -1,0 +1,12 @@
+version: '3'
+services:
+  glassfish:
+    build: .  # Build the image using the Dockerfile in current directory
+    ports:
+      - "8080:8080"
+      - "4848:4848"
+    volumes:
+      - ./agoncal-application-petstore-ee6:/app  # Mount your application source code into the container
+    environment:
+      - GLASSFISH_VERSION=3.1.2.2  # Set GlassFish version
+    command: ["/glassfish3/bin/asadmin", "start-domain", "--verbose"]
