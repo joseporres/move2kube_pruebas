@@ -1,0 +1,90 @@
+move2kube:
+  minreplicas: "2"
+  repo:
+    keys:
+      load: false
+      pub:
+        load: false
+  services:
+    petstoreee7:
+      "8080":
+        servicetype: Ingress
+        urlpath: /petstoreee7
+      childModules:
+        petstoreee7:
+          port: "8080"
+      dockerfileType: build stage in base image
+      enable: true
+      mavenProfiles:
+        - arquillian-wildfly-remote
+        - arquillian-wildfly-managed
+      statefulset: false
+      wartransformer: Tomcat
+    sponsor-postgresql:
+      "5432":
+        servicetype: Ingress
+        urlpath: /sponsor-postgresql
+      enable: true
+      statefulset: false
+  spawncontainers: false
+  target:
+    cicd:
+      tekton:
+        gitrepobasicauthsecret: ""
+        gitreposshsecret: ""
+        registrypushsecret: ""
+    default:
+      clustertype: Kubernetes
+      ingress:
+        host: myproject.com
+        ingressclassname: ""
+        tls: ""
+    imageregistry:
+      namespace: myproject
+      quay.io:
+        logintype: no authentication
+      url: quay.io
+  transformers:
+    kubernetes:
+      argocd:
+        namespace: ""
+    types:
+      - Tomcat
+      - PHP-Dockerfile
+      - Nodejs-Dockerfile
+      - DockerfileParser
+      - ComposeAnalyser
+      - Jar
+      - Golang-Dockerfile
+      - Tekton
+      - WarRouter
+      - Maven
+      - ZuulAnalyser
+      - ContainerImagesPushScriptGenerator
+      - Jboss
+      - KubernetesVersionChanger
+      - Python-Dockerfile
+      - WarAnalyser
+      - EarRouter
+      - CloudFoundry
+      - CNBContainerizer
+      - OperatorTransformer
+      - DotNetCore-Dockerfile
+      - DockerfileImageBuildScript
+      - ReadMeGenerator
+      - ComposeGenerator
+      - KubernetesWithCustomOutputDirectory
+      - ArgoCD
+      - Parameterizer
+      - Ruby-Dockerfile
+      - EarAnalyser
+      - Rust-Dockerfile
+      - Buildconfig
+      - DockerfileDetector
+      - Knative
+      - Gradle
+      - WinWebApp-Dockerfile
+      - OperatorsFromTCA
+      - Liberty
+      - ClusterSelector
+  transformerselector: ""

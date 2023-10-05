@@ -1,0 +1,3 @@
+resources:
+  - petstoreee7-service.yaml
+  - sponsor-postgresql-service.yaml

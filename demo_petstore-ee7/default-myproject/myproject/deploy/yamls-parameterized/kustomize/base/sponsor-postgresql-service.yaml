@@ -1,0 +1,22 @@
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    creationTimestamp: null
+    labels:
+        move2kube.konveyor.io/service: sponsor-postgresql
+    name: sponsor-postgresql
+spec:
+    clusterIP: None
+    ports:
+        - name: port-5432
+          port: 5432
+          targetPort: 5432
+    selector:
+        move2kube.konveyor.io/service: sponsor-postgresql
+    type: ClusterIP
+status:
+    loadBalancer: {}
+
+...

@@ -1,0 +1,27 @@
+
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+    creationTimestamp: null
+    labels:
+        move2kube.konveyor.io/service: sponsor-postgresql
+    name: sponsor-postgresql
+spec:
+    template:
+        metadata:
+            creationTimestamp: null
+        spec:
+            containers:
+                - image: postgres:9.6.5
+                  imagePullPolicy: Always
+                  name: sponsor-postgresql
+                  ports:
+                    - containerPort: 5432
+                      protocol: TCP
+                  resources: {}
+            restartPolicy: Always
+            securityContext: {}
+status: {}
+
+...

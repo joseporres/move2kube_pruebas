@@ -1,0 +1,33 @@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    creationTimestamp: null
+    labels:
+        move2kube.konveyor.io/service: petstoreee7
+    name: petstoreee7
+spec:
+    replicas: {{ index .Values "common" "replicas" }}
+    selector:
+        matchLabels:
+            move2kube.konveyor.io/service: petstoreee7
+    strategy: {}
+    template:
+        metadata:
+            creationTimestamp: null
+            labels:
+                move2kube.konveyor.io/service: petstoreee7
+            name: petstoreee7
+        spec:
+            containers:
+                - image: quay.io/myproject/petstoreee7:latest
+                  imagePullPolicy: Always
+                  name: petstoreee7
+                  ports:
+                    - containerPort: 8080
+                  resources: {}
+            restartPolicy: Always
+status: {}
+
+...
